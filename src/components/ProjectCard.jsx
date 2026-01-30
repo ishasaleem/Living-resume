@@ -23,7 +23,7 @@ export default function ProjectCard({ project }) {
   return (
     <>
       <motion.div
-        className="relative p-6 overflow-hidden transition-all transform border-4 shadow-lg cursor-pointer rounded-2xl hover:scale-105"
+        className="p-6 border-4 rounded-2xl shadow-lg cursor-pointer hover:scale-105 transform transition-all relative overflow-hidden"
         style={{
           borderImage: "linear-gradient(135deg, #a855f7, #ec4899, #3b82f6) 1",
         }}
@@ -32,13 +32,13 @@ export default function ProjectCard({ project }) {
         transition={{ duration: 0.6 }}
         onClick={handleOpen}
       >
-        <h3 className="mb-2 text-xl font-bold">{project.title}</h3>
-        <p className="mb-2 text-gray-600">{project.goal}</p>
+        <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+        <p className="text-gray-600 mb-2">{project.goal}</p>
         <p className="text-sm text-gray-500">
           Tech: {project.technologies.join(", ")}
         </p>
         <button
-          className="px-4 py-2 mt-4 font-semibold text-white transition transform shadow bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 rounded-xl hover:scale-105"
+          className="mt-4 px-4 py-2 bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 text-white rounded-xl font-semibold shadow hover:scale-105 transition transform"
           onClick={handleOpen}
         >
           Explain My Code
@@ -48,7 +48,7 @@ export default function ProjectCard({ project }) {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+            className="fixed inset-0 bg-black/50 flex justify-center items-center z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -57,25 +57,25 @@ export default function ProjectCard({ project }) {
             {confetti && <Confetti width={window.innerWidth} height={window.innerHeight} />}
 
             <motion.div
-              className="relative w-full max-w-3xl p-8 bg-white shadow-2xl dark:bg-gray-900 rounded-2xl"
+              className="bg-white dark:bg-gray-900 rounded-2xl p-8 max-w-3xl w-full relative shadow-2xl"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: [0.8, 1.05, 1], opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ duration: 0.5, type: "spring", bounce: 0.5 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <h2 className="mb-4 text-2xl font-bold">{project.title}</h2>
-              <p className="mb-2 text-gray-600 dark:text-gray-300">{project.goal}</p>
-              <p className="mb-4 text-sm text-gray-500">
+              <h2 className="text-2xl font-bold mb-4">{project.title}</h2>
+              <p className="text-gray-600 dark:text-gray-300 mb-2">{project.goal}</p>
+              <p className="text-sm text-gray-500 mb-4">
                 <strong>Role:</strong> {project.role}
               </p>
-              <p className="mb-4 text-sm text-gray-500">
+              <p className="text-sm text-gray-500 mb-4">
                 <strong>Technologies:</strong> {project.technologies.join(", ")}
               </p>
 
               {/* Live Preview for Frontend */}
               {project.live && project.category === "Frontend" && (
-                <div className="w-full h-64 mt-4 overflow-hidden border rounded-lg shadow">
+                <div className="mt-4 w-full h-64 border rounded-lg overflow-hidden shadow">
                   <iframe
                     src={project.live}
                     className="w-full h-full"
@@ -91,7 +91,7 @@ export default function ProjectCard({ project }) {
                     href={project.github}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-2 font-semibold text-indigo-500 hover:underline"
+                    className="flex items-center gap-2 text-indigo-500 hover:underline font-semibold"
                   >
                     <FaGithub /> GitHub
                   </a>
@@ -102,7 +102,7 @@ export default function ProjectCard({ project }) {
                     href={project.live}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center gap-2 font-semibold text-green-500 hover:underline"
+                    className="flex items-center gap-2 text-green-500 hover:underline font-semibold"
                   >
                     <FaExternalLinkAlt /> Live Demo
                   </a>
@@ -110,7 +110,7 @@ export default function ProjectCard({ project }) {
               </div>
 
               <button
-                className="absolute text-xl font-bold text-gray-600 top-4 right-4 dark:text-gray-300"
+                className="absolute top-4 right-4 text-gray-600 dark:text-gray-300 font-bold text-xl"
                 onClick={() => setOpen(false)}
               >
                 &times;
